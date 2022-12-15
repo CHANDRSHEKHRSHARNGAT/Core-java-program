@@ -1,0 +1,130 @@
+Q .String class is immutable ,explain the conept giving example
+
+2 / 2
+In computer programming, a string is a sequence of characters 
+that makes up a piece of text. In many programming languages, 
+the string class is immutable, which means that once a string 
+object is created, it cannot be changed. This means that any 
+operation that appears to modify a string object, such as appending 
+new characters to it or changing the character at a specific index, 
+will actually create a new string object with the modified value, 
+leaving the original string unchanged.
+For example, consider the following code in a language that has an immutable string class:
+
+string str1 = "Hello";
+string str2 = str1;
+str1 = str1 + " world";
+
+In this code, the string "Hello" is stored in the str1 variable.
+ The str2 variable is then assigned to str1, so it also refers 
+ to the string "Hello". Finally, str1 is assigned to a new 
+ string that is the concatenation of the original "Hello" 
+ string and the string " world".
+Since the string class is immutable, this operation doesn't 
+actually modify the original string stored in str1 and str2. 
+Instead, it creates a new string object with the value "Hello world",
+ and assigns this new string to the str1 variable. The str2 variable 
+ continues to refer to the original "Hello" string, 
+and is unaffected by the change to str1.
+This immutability can be useful because it allows multiple 
+variables to refer to the same string without worrying about 
+one of them being modified and changing the value for all of them.
+It can also make it easier to reason about the code and make sure 
+that strings are not being changed unexpectedly.
+
+
+
+Q.Explain String class equals method and hashCode method, the contract between equals and hashCode method and from which parent class these methods are present
+
+equals() and hashcode() are the two important methods provided by the Object class for comparing objects. 
+
+the Object class is the parent class for all Java objects, 
+
+all objects inherit the default implementation of these two methods. 
+
+The equals() method is used to compare the equality of two objects. It returns true if the objects are equal and false if they are not. The hashCode() method returns an integer value that represents the object's hash code.
+
+The contract between the equals() and hashCode() methods is that if two objects are equal according to the equals() method, then they must have the same hash code according to the hashCode() method. This is important because hash-based collections, such as HashMap and HashSet, use the hash code of an object to determine where to store the object in the collection.
+
+The equals() and hashCode() methods are present in the Object class, which is the parent class for all Java objects. In order to properly override these methods, it is important to follow the contract between the two methods, as described above.
+
+
+
+Q.We need to create an object array of given class Cutomer, how do we create object array of class and initialize the members
+
+  Consider Customer class , customerId , customerName , get/set, default constructor
+
+write steps to perform the task
+To create an object array of the Customer class and initialize its members, you can follow these steps:
+
+First, define the Customer class with the required member variables (e.g. customerId and customerName) and the necessary getter and setter methods to access and modify the values of these variables.
+
+Next, define a default constructor for the Customer class that initializes the member variables to default values.
+
+After that, create an array of Customer objects with a desired size using the new keyword, as shown below:
+
+
+// Create an array of Customer objects with size 10
+Customer[] customerArray = new Customer[10];
+To initialize the members of each Customer object in the array, you can use the default constructor of the Customer class, as shown below:
+
+// Initialize each Customer object in the array
+for (int i = 0; i < customerArray.length; i++) {
+  customerArray[i] = new Customer();
+}
+Finally, you can use the setter methods of the Customer class to set the values of the customerId and customerName variables for each Customer object in the array, as shown below:
+
+// Set the values of the customerId and customerName variables
+for (int i = 0; i < customerArray.length; i++) {
+  customerArray[i].setCustomerId(i + 1);
+  customerArray[i].setCustomerName("Customer " + (i + 1));
+}
+
+Once you have completed these steps, the Customer object array will be created and initialized with the desired values. You can then access the individual Customer objects and their member variables using the array index and the appropriate getter methods.
+
+
+Q.What is the difference between equals() method and == operator
+
+The equals() method is used to compare the values of two objects, while the == operator is used to compare the objects themselves. In other words, the equals() method checks if the values of two objects are equal, while the == operator checks if the objects are the same instance. Here's an example:
+
+
+String str1 = "hello";
+String str2 = "hello";
+
+// Using the equals() method
+System.out.println(str1.equals(str2));  // Output: true
+
+// Using the == operator
+System.out.println(str1 == str2);  // Output: true
+In the example above, both the equals() method and the == operator return true, because the values of the str1 and str2 objects are equal.
+
+However, if we create two separate instances of the String class that have the same value, the equals() method will still return true, but the == operator will return false, because the objects are not the same instance:
+
+String str1 = new String("hello");
+String str2 = new String("hello");
+
+// Using the equals() method
+System.out.println(str1.equals(str2));  // Output: true
+
+// Using the == operator
+System.out.println(str1 == str2);  // Output: false
+
+As you can see, the equals() method returns true because the values of the str1 and str2 objects are equal, but the == operator returns false because the objects are not the same instance.
+
+
+
+Q.Consider the scenario: we want to read data from a file with around 50 lines, reading is done line by line, which class we will prefer to access and store the fetch lines (String or StringBuffer why)
+
+There are multiple ways of writing and reading a text file.
+This is required while dealing with many applications.
+There are several ways to read a plain text file in Java 
+
+e.g. you can use FileReader, BufferedReader or Scanner to read a text file.
+
+In this scenario, it is recommended to use the BufferedReader class to read the data line by line from the file. This is because the BufferedReader class reads text from a character-input stream, buffering characters so as to provide for the efficient reading of characters, arrays, and lines.
+
+Additionally, using the BufferedReader class allows us to read a line of text at a time, rather than reading each character individually, which can be more efficient when dealing with large files.
+
+In terms of storing the fetched lines, it is recommended to use the String class to store each line of text. This is because the String class is a immutable class, meaning that once a string object is created, its value cannot be changed. This can be useful in this scenario because it allows us to store the lines of text without worrying about the data being modified.
+
+In contrast, the StringBuffer class is a mutable class, meaning that its value can be modified after it is created. While this may be useful in some scenarios, it is not necessary in this case since we are only reading the data from the file and not modifying it. Therefore, using the String class would be a better choice for storing the fetched lines in this scenario.
